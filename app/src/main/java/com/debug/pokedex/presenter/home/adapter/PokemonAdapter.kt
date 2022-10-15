@@ -43,15 +43,11 @@ class PokemonAdapter(
         fun bind(pokemon: PokemonViewObject) {
             binding.apply {
                 pokeId.text = "#${pokemon.id.toString().padStart(3, '0')}"
-                pokeName.text = pokemon.name
+                pokeName.text = pokemon.name.replaceFirstChar(Char::titlecase)
                 pokemonImage.load(pokemon.image)
 
                 background.backgroundTintList =
                     ContextCompat.getColorStateList(itemView.context, (pokemon.mainType.color))
-
-//                pokemonMainTypeBackgroundImage.apply {
-//                    setImageResource(pokemon.mainType.icon)
-//                }
 
                 firstType.root.isVisible = false
                 pokemon.types.firstOrNull()?.also {
