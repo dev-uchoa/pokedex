@@ -2,7 +2,7 @@ package com.debug.pokedex
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.debug.pokedex.ui.main.MainFragment
+import com.debug.pokedex.presenter.home.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
