@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 
-object ServiceProvider {
+class ServiceProvider {
     private val url = "https://pokemon-db-json.herokuapp.com/"
 
     private val contentType = "application/json".toMediaType()

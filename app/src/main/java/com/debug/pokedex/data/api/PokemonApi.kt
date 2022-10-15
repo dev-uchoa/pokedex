@@ -1,6 +1,6 @@
-package com.debug.pokedex.network
+package com.debug.pokedex.data.api
 
-import com.debug.pokedex.data.PokemonRemote
+import com.debug.pokedex.data.model.PokemonRemote
 import retrofit2.http.GET
 
 interface PokemonApi {
