@@ -1,4 +1,4 @@
-package com.debug.pokedex.data
+package com.debug.pokedex.data.model
 
 import kotlinx.serialization.SerialName
 

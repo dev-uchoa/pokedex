@@ -1,15 +1,18 @@
 package com.debug.pokedex.presenter.home.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.debug.pokedex.data.PokemonRemote
 import com.debug.pokedex.databinding.ItemPokemonBinding
+import com.debug.pokedex.presenter.home.model.PokemonViewObject
 
 class PokemonAdapter(
-    private val dataSet: List<PokemonRemote>,
-    private val onClickItem: (PokemonRemote) -> Unit
+    private val dataSet: List<PokemonViewObject>,
+    private val onClickItem: (PokemonViewObject) -> Unit
 ) :
     RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
@@ -37,14 +40,43 @@ class PokemonAdapter(
             }
         }
 
-        fun bind(pokemon: PokemonRemote) {
+        fun bind(pokemon: PokemonViewObject) {
             binding.apply {
                 pokeId.text = "#${pokemon.id.toString().padStart(3, '0')}"
                 pokeName.text = pokemon.name
                 pokemonImage.load(pokemon.image)
+
+                background.backgroundTintList =
+                    ContextCompat.getColorStateList(itemView.context, (pokemon.mainType.color))
+
+//                pokemonMainTypeBackgroundImage.apply {
+//                    setImageResource(pokemon.mainType.icon)
+//                }
+
+                firstType.root.isVisible = false
+                pokemon.types.firstOrNull()?.also {
+                    firstType.root.apply {
+                        isVisible = true
+                        backgroundTintList =
+                            ContextCompat.getColorStateList(itemView.context, it.colorAccent)
+
+                    }
+                    firstType.typeIcon.setImageResource(it.icon)
+                    firstType.typeDescription.setText(it.type)
+                }
+
+                secondType.root.isVisible = false
+                pokemon.types.getOrNull(1)?.also {
+                    secondType.root.apply {
+                        visibility = View.VISIBLE
+                        backgroundTintList =
+                            ContextCompat.getColorStateList(itemView.context, it.colorAccent)
+                    }
+
+                    secondType.typeIcon.setImageResource(it.icon)
+                    secondType.typeDescription.setText(it.type)
+                }
             }
         }
-
     }
-
 }
