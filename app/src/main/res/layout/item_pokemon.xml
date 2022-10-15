@@ -56,6 +56,7 @@
         android:layout_marginTop="16dp"
         android:maxLength="4"
         android:textStyle="bold"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/background"
         tools:text="@tools:sample/lorem" />
@@ -69,6 +70,8 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/pokemonImage"
         app:layout_constraintStart_toStartOf="@id/background"
         app:layout_constraintTop_toBottomOf="@id/pokeId"

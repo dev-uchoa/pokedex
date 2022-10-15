@@ -18,6 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/white"
         tools:src="@drawable/ic_bug" />
 
     <TextView
@@ -28,6 +29,7 @@
         android:ellipsize="end"
         android:maxLength="8"
         android:maxLines="1"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@id/type_icon"
         app:layout_constraintStart_toEndOf="@id/type_icon"
         app:layout_constraintTop_toTopOf="@id/type_icon"
