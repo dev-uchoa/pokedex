@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
@@ -21,17 +22,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private lateinit var binding: FragmentMainBinding
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by activityViewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         viewModel.getPokemonList()
     }
@@ -40,7 +37,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(inflater)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -54,6 +51,9 @@ class MainFragment : Fragment() {
         viewModel.pokemons.observe(viewLifecycleOwner) {
             binding.pokemons.adapter = PokemonAdapter(it) { pokemon ->
                 //go to pokemon detail
+
+                val action = MainFragmentDirections.actionMainFragmentToDetailFragment(pokemon)
+                binding.root.findNavController().navigate(action)
             }
         }
 
@@ -92,6 +92,11 @@ class MainFragment : Fragment() {
 
         binding.loadingImage.isVisible = true
         binding.pokemons.isVisible = false
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

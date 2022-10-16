@@ -42,8 +42,8 @@ class PokemonAdapter(
 
         fun bind(pokemon: PokemonViewObject) {
             binding.apply {
-                pokeId.text = "#${pokemon.id.toString().padStart(3, '0')}"
-                pokeName.text = pokemon.name.replaceFirstChar(Char::titlecase)
+                pokemonId.text = "#${pokemon.id.toString().padStart(3, '0')}"
+                pokemonName.text = pokemon.name.replaceFirstChar(Char::titlecase)
                 pokemonImage.load(pokemon.image)
 
                 background.backgroundTintList =

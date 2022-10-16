@@ -1,17 +1,20 @@
 package com.debug.pokedex.presenter.home.model
 
+import android.os.Parcelable
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.debug.pokedex.R
 import com.debug.pokedex.domain.entity.PokemonType
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 enum class PokemonTypeResources(
     @StringRes val type: Int,
     @DrawableRes val icon: Int,
     @ColorRes val color: Int,
     @ColorRes val colorAccent: Int
-) {
+) : Parcelable {
     BUG_RESOURCES(
         R.string.pokemon_type_bug,
         R.drawable.ic_bug,
