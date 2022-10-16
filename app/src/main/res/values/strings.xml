@@ -19,4 +19,5 @@
     <string name="pokemon_type_rock">rock</string>
     <string name="pokemon_type_steel">steel</string>
     <string name="pokemon_type_water">water</string>
+    <string name="pokedex">Pokédex</string>
 </resources>
