@@ -1,7 +1,10 @@
 package com.debug.pokedex.presenter.home.model
 
+import android.os.Parcelable
 import com.debug.pokedex.domain.entity.Pokemon
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class PokemonViewObject(
     val id: Int,
     val name: String,
@@ -12,7 +15,7 @@ data class PokemonViewObject(
     val species: String,
     val mainType: PokemonTypeResources,
     val types: List<PokemonTypeResources>
-) {
+) : Parcelable {
     constructor(pokemon: Pokemon) : this(
         id = pokemon.id,
         name = pokemon.name,
